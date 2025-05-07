@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Australia Site Quiz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    html, body { height: 100%; margin: 0; font-family: sans-serif; }
+    #map { height: 60%; }
+    #controls { padding: 10px; }
+    select, button { font-size: 1em; padding: 5px; margin: 5px 0; width: 100%; }
+    #feedback { margin-top: 10px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <div id="controls">
+    <select id="stateSelect">
+      <option value="">Select a State</option>
+    </select>
+    <button onclick="startQuiz()">Start Quiz</button>
+    <select id="guessSelect">
+      <option value="">Select the site name</option>
+    </select>
+    <div id="feedback"></div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="site-quiz-data.js"></script>
+  <script src="quiz-app.js"></script>
+</body>
+</html>
