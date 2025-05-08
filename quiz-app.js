@@ -10,8 +10,9 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 const stateSelect = document.getElementById('stateSelect');
-const guessSelect = document.getElementById('guessSelect');
+const guessInput = document.getElementById('guessInput');
 const feedback = document.getElementById('feedback');
+const datalist = document.getElementById('siteOptions');
 
 function populateStates() {
   const states = [...new Set(siteData.map(site => site['Site State']))].sort();
@@ -24,12 +25,11 @@ function populateStates() {
 }
 
 function populateGuesses() {
-  guessSelect.innerHTML = '<option value="">Select the site name</option>';
+  datalist.innerHTML = '';
   filteredSites.forEach(site => {
     const option = document.createElement('option');
     option.value = site.Site;
-    option.text = site.Site;
-    guessSelect.appendChild(option);
+    datalist.appendChild(option);
   });
 }
 
@@ -48,11 +48,12 @@ function startQuiz() {
   map.setView([currentSite.Latitude, currentSite.Longitude], 7);
 
   feedback.innerText = '';
+  guessInput.value = '';
 }
 
-guessSelect.addEventListener('change', () => {
+guessInput.addEventListener('change', () => {
   if (!currentSite) return;
-  if (guessSelect.value === currentSite.Site) {
+  if (guessInput.value.trim().toLowerCase() === currentSite.Site.toLowerCase()) {
     feedback.innerText = '✅ Correct!';
     feedback.style.color = 'green';
   } else {
